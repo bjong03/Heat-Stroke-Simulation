@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Heat Stroke Risk Simulation</title>
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <!-- Plotly.js -->
+  <script src="https://cdn.plot.ly/plotly-2.17.0.min.js"></script>
+</head>
+
+<body>
+  <div class="a">
+  <h1>Heat Stroke Simulation</h1>
+  <script src="script.js"></script>
+  <img src="Images/Sensor.png" width ="500" height="500">
+
+  <h2>Heat Index</h2>
+  <div id="EnvironmentData"></div>
+    <script>
+      
+      function rand() {
+        return Math.random();
+      }
+
+      Plotly.newPlot('EnvironmentData', [{
+        y: [1,2,3].map(rand),
+        mode: 'lines',
+        line: {color: '#80CAF6'}
+      }]);
+
+      
+      var cnt = 0;
+
+      var interval = setInterval(function() {
+
+        Plotly.extendTraces('EnvironmentData', {
+          y: [[rand()]]
+        }, [0])
+
+        if(++cnt === 1000) clearInterval(interval);
+      }, 300);
+
+    </script>
+  
+  <h2>Core Body Temperature</h2>
+  <div id="CoreBody"></div>
+    <script>
+
+      function rand() {
+        return Math.random();
+      }
+
+      Plotly.newPlot('CoreBody', [{
+        y: [1,2,3].map(rand),
+        mode: 'lines',
+        line: {color: '#80CAF6'}
+      }]);
+
+      var cnt = 0;
+
+      var interval = setInterval(function() {
+
+        Plotly.extendTraces('CoreBody', {
+          y: [[rand()]]
+        }, [0])
+
+        if(++cnt === 1000) clearInterval(interval);
+      }, 300);
+
+    </script>
+  
+  Exercise: 
+  <select id="Exercise" onchange="myFunction()"> 
+    <option>Yes</option>
+    <option>No</option></select>
+    <script>
+    var Exercise = document.getElementById("Exercise");
+    var myIndex = Exercise.selectedIndex; // 0, 1, 2, etc. 
+    </script>
+
+  <br>
+  <br>
+  <br>
+
+  <input type="range" id="mySlider" min="0" max="10" step="0.1" value="5" 
+    onchange="myFunction()" oninput="myFunction()">
+  Ambient Temperature = <span id="myReadout">5.0</span>
+  <script>
+    var mySlider = document.getElementById("mySlider");
+    var myReadout = document.getElementById("myReadout");
+    var myVariable = Number(mySlider.value);
+    function myFunction() {
+      myReadout.innerHTML = Number(mySlider.value).toFixed(1); 
+    }
+  </script>
+  
+  <div id="footer" style="width:90%;height:250px;"></div>
+
+</body>
+
+</html>
