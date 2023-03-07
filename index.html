@@ -8,6 +8,8 @@
   <link href="style.css" rel="stylesheet" type="text/css" />
   <!-- Plotly.js -->
   <script src="https://cdn.plot.ly/plotly-2.17.0.min.js"></script>
+  <script type="text/javascript" src="/Users/bjong/Heat Stroke Risk Simulation/script.js"></script>
+  <script src="script.js"></script>
 </head>
 
 <body>
@@ -95,7 +97,40 @@
       myReadout.innerHTML = Number(mySlider.value).toFixed(1); 
     }
   </script>
+
+  <input type="range" id="heartrate" min="0" max="200" step="1" value="100" 
+  onchange="myFunction()" oninput="myFunction()">
+  Heart Rate = <span id="Readout_heart">100.0</span>
+  <script>
+  var heartrate = document.getElementById("heartrate");
+  var Readout_heart = document.getElementById("Readout_heart");
+  var heartrate_value = Number(heartrate.value);
+  function myFunction() {
+    Readout_heart.innerHTML = Number(heartrate.value).toFixed(1); 
+  }
+
+  </script>
   
+<br>
+<br>
+<label for="slider1"><b>Slider 1:</b> <span id="slider1Value">50</span></label>
+<input type="range" id="slider1" min="0" max="10" value="5">
+<script src="script.js"></script>
+<br>
+<br>
+
+<label for="slider2"><b>Slider 2:</b> <span id="slider2Value">25</span></label>
+<input type="range" id="slider2" min="0" max="10" value="5">
+<br>
+<br>
+
+<label for="slider3"><b>Slider 3:</b> <span id="slider3Value">75</span></label>
+<input type="range" id="slider3" min="0" max="10" value="5">
+<br>
+<br>
+
+<div id="sum">Sum: </div>
+
   <div id="footer" style="width:90%;height:250px;"></div>
 
 </body>
