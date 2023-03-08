@@ -9,13 +9,11 @@
   <!-- Plotly.js -->
   <script src="https://cdn.plot.ly/plotly-2.17.0.min.js"></script>
   <script type="text/javascript" src="/Users/bjong/Heat Stroke Risk Simulation/script.js"></script>
-  <script src="script.js"></script>
 </head>
 
 <body>
   <div class="a">
   <h1>Heat Stroke Simulation</h1>
-  <script src="script.js"></script>
   <img src="Images/Sensor.png" width ="500" height="500">
 
   <h2>Heat Index</h2>
@@ -27,7 +25,7 @@
       }
 
       Plotly.newPlot('EnvironmentData', [{
-        y: [1,2,3].map(rand),
+        y: sum,
         mode: 'lines',
         line: {color: '#80CAF6'}
       }]);
@@ -38,7 +36,7 @@
       var interval = setInterval(function() {
 
         Plotly.extendTraces('EnvironmentData', {
-          y: [[rand()]]
+          y: sum
         }, [0])
 
         if(++cnt === 1000) clearInterval(interval);
@@ -113,23 +111,31 @@
   
 <br>
 <br>
-<label for="slider1"><b>Slider 1:</b> <span id="slider1Value">50</span></label>
+<label for="slider1"><b>Slider 1:</b> <span id="slider1Value">5</span></label>
 <input type="range" id="slider1" min="0" max="10" value="5">
-<script src="script.js"></script>
 <br>
 <br>
 
-<label for="slider2"><b>Slider 2:</b> <span id="slider2Value">25</span></label>
+<label for="slider2"><b>Slider 2:</b> <span id="slider2Value">5</span></label>
 <input type="range" id="slider2" min="0" max="10" value="5">
 <br>
 <br>
 
-<label for="slider3"><b>Slider 3:</b> <span id="slider3Value">75</span></label>
+<label for="slider3"><b>Slider 3:</b> <span id="slider3Value">5</span></label>
 <input type="range" id="slider3" min="0" max="10" value="5">
 <br>
 <br>
 
+<br>
+<br>
+<label for="AmbientTemp"><b>Ambient Temperature:</b> <span id="AmbientTempValue">5</span></label>
+<input type="range" id="AmbientTemp" min="0" max="10" value="5">
+<br>
+<br>
+
 <div id="sum">Sum: </div>
+<div id="corebodytemp">Core Body Temperature: </div>
+<script type="text/javascript" src="script.js"></script>
 
   <div id="footer" style="width:90%;height:250px;"></div>
 
